@@ -21,7 +21,7 @@ namespace { namespace local
     ///////////////////////////////////////////////////////////////////////////
     // Generate a random number string with N digits
     std::string
-    gen_int(int digits, bool negative)
+    gen_int(size_t digits, bool negative)
     {
         std::string result;
 
@@ -30,7 +30,7 @@ namespace { namespace local
 
         result += '1' + (std::rand()%9);         // The first digit cannot be '0'
 
-        for (int i = 1; i < digits; ++i)    // Generate the remaining digits
+        for (size_t i = 1; i < digits; ++i)    // Generate the remaining digits
             result += '0' + (std::rand()%10);
         return result;
     }

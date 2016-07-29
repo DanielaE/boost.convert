@@ -142,11 +142,11 @@ double
 raw_str_to(Converter const& cnv)
 {
     local::strings strings = local::get_strs(); // Create strings on the stack
-    int const         size = strings.size();
+    size_t const         size = strings.size();
     local::timer     timer;
 
     for (int t = 0; t < local::num_cycles; ++t)
-        for (int k = 0; k < size; ++k)
+        for (size_t k = 0; k < size; ++k)
             local::sum += cnv(strings[k].c_str());
 
     return timer.value();
@@ -157,11 +157,11 @@ double
 local::str_to(Converter const& try_converter)
 {
     local::strings strings = local::get_strs(); // Create strings on the stack
-    int const         size = strings.size();
+    size_t const         size = strings.size();
     local::timer     timer;
 
     for (int t = 0; t < local::num_cycles; ++t)
-        for (int k = 0; k < size; ++k)
+        for (size_t k = 0; k < size; ++k)
             local::sum += boost::convert<Type>(strings[k].c_str(), try_converter).value();
 
     return timer.value();
@@ -174,11 +174,11 @@ local::to_str(Converter const& try_converter)
     typedef typename local::array<Type>::type collection;
 
     collection  values = local::get<Type>();
-    int const     size = values.size();
+    size_t const     size = values.size();
     local::timer timer;
 
     for (int t = 0; t < local::num_cycles; ++t)
-        for (int k = 0; k < size; ++k)
+        for (size_t k = 0; k < size; ++k)
             local::sum += *boost::convert<string_type>(Type(values[k]), try_converter).value().begin();
 
     return timer.value();
