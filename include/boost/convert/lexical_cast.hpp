@@ -7,6 +7,11 @@
 
 #include <boost/lexical_cast.hpp>
 
+#ifdef BOOST_MSVC
+# pragma warning(push)
+# pragma warning(disable: 4702) // unreachable code
+#endif
+
 namespace boost { namespace cnv
 {
     struct lexical_cast;
@@ -36,5 +41,9 @@ struct boost::cnv::lexical_cast
         }
     }
 };
+
+#ifdef BOOST_MSVC
+# pragma warning(pop)
+#endif
 
 #endif // BOOST_CONVERT_LEXICAL_CAST_HPP
